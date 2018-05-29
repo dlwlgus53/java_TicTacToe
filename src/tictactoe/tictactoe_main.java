@@ -12,12 +12,17 @@ public class tictactoe_main {
 		
 		load_save ULS = new load_save();//UserLoadSave
 		load_save CLS = new load_save();//ComputerLoadSave
+		
 		//array initialaize
 		SaveMakeClean(User_Save);
 		SaveMakeClean(Computer_Save);
+		
 		//pirnt board
 		print board = new print();
 		board.origin();
+		board.show(User_Save, Computer_Save);
+		ULS.run(3, User_Save);
+		CLS.run(1, Computer_Save);
 		board.show(User_Save, Computer_Save);
 		int temp;
 	//	int turn=0;

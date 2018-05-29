@@ -4,6 +4,7 @@ public class print {
 	int[][] UserAndCom = new int[3][3];
 
 	print(){
+		//constructor
 		int i=0,j=0;
 		for(i=0;i<3;i++) {
 			for(j=0;j<3;j++) {
@@ -11,8 +12,9 @@ public class print {
 			}
 		}
 	}
-
+	
 	public void origin() {
+		//처음 표 보여주는 함수
 		System.out.println(" 1 ㅣ 2 ㅣ 3");
 		System.out.println(" ㅡ     ㅡ    ㅡ");
 		System.out.println(" 4 ㅣ 5 ㅣ 6");
@@ -21,33 +23,31 @@ public class print {
 	}
 	
 	public void show(int[][] user_load,int[][] computer_load) {
+		//현재상태를 보여주는 함수
 		sum(user_load,computer_load);
 		int i=0,j=0;
+		System.out.println("\n"+" ㅡ     ㅡ    ㅡ");
 		for(i=0;i<3;i++) {
-			for(j=0;j<3;j++) {
-				System.out.print(UserAndCom[i][j] + " " );
-			}
-			System.out.println(" ");
-		}	
-		for(i=0;i<3;i++) {
+			System.out.print("| ");
 			for(j=0;j<3;j++) {
 				if(UserAndCom[i][j] == 0) {
-					System.out.print("  ");
+					System.out.print(" ");
 					System.out.print("| ");
 				}
 				else if(UserAndCom[i][j] ==1) {
-					System.out.print(" O ");
-					System.out.print("|");
+					System.out.print("O");
+					System.out.print("| ");
 				}
 				else if(UserAndCom[i][j] == -1) {
-					System.out.print(" X ");
-					System.out.print("|");
+					System.out.print("X");
+					System.out.print("| ");
 					
 				}
 			}
 			System.out.println("\n"+" ㅡ     ㅡ    ㅡ");
 			
 		}
+		System.out.println("\n\n");
 	}
 
 	private void sum(int[][] user_load,int[][] computer_load ) {
