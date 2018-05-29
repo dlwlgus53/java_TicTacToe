@@ -21,8 +21,33 @@ public class print {
 	}
 	
 	public void show(int[][] user_load,int[][] computer_load) {
-		sum(user_load,computer)
-		
+		sum(user_load,computer_load);
+		int i=0,j=0;
+		for(i=0;i<3;i++) {
+			for(j=0;j<3;j++) {
+				System.out.print(UserAndCom[i][j] + " " );
+			}
+			System.out.println(" ");
+		}	
+		for(i=0;i<3;i++) {
+			for(j=0;j<3;j++) {
+				if(UserAndCom[i][j] == 0) {
+					System.out.print("  ");
+					System.out.print("| ");
+				}
+				else if(UserAndCom[i][j] ==1) {
+					System.out.print(" O ");
+					System.out.print("|");
+				}
+				else if(UserAndCom[i][j] == -1) {
+					System.out.print(" X ");
+					System.out.print("|");
+					
+				}
+			}
+			System.out.println("\n"+" คั     คั    คั");
+			
+		}
 	}
 
 	private void sum(int[][] user_load,int[][] computer_load ) {
