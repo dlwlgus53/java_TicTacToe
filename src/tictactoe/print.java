@@ -1,19 +1,8 @@
 package tictactoe;
 
-public class print {
-	int[][] UserAndCom = new int[3][3];
+public class Print {
 
-	print(){
-		//constructor
-		int i=0,j=0;
-		for(i=0;i<3;i++) {
-			for(j=0;j<3;j++) {
-				UserAndCom[i][j] = 0;
-			}
-		}
-	}
-	
-	public void origin() {
+	public static void origin() {
 		//처음 표 보여주는 함수
 		System.out.println(" 1 ㅣ 2 ㅣ 3");
 		System.out.println(" ㅡ     ㅡ    ㅡ");
@@ -22,23 +11,23 @@ public class print {
 		System.out.println(" 7 ㅣ 8 ㅣ 9");
 	}
 	
-	public void show(int[][] user_load,int[][] computer_load) {
+	public static void show(int[][] map) {
 		//현재상태를 보여주는 함수
-		sum(user_load,computer_load);
+		
 		int i=0,j=0;
 		System.out.println("\n"+" ㅡ     ㅡ    ㅡ");
 		for(i=0;i<3;i++) {
 			System.out.print("| ");
 			for(j=0;j<3;j++) {
-				if(UserAndCom[i][j] == 0) {
+				if(map[i][j] == 0) {
 					System.out.print(" ");
 					System.out.print("| ");
 				}
-				else if(UserAndCom[i][j] ==1) {
+				else if(map[i][j] ==1) {
 					System.out.print("O");
 					System.out.print("| ");
 				}
-				else if(UserAndCom[i][j] == -1) {
+				else if(map[i][j] == -1) {
 					System.out.print("X");
 					System.out.print("| ");
 					
@@ -50,7 +39,7 @@ public class print {
 		System.out.println("\n\n");
 	}
 
-	private void sum(int[][] user_load,int[][] computer_load ) {
+	/*private void sum(int[][] user_load,int[][] computer_load ) {
 		//user = 1;
 		//com = -1;
 
@@ -77,5 +66,6 @@ public class print {
 		}
 
 	}
+	*/
 
 }

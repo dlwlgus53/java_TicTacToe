@@ -7,19 +7,19 @@ import java.util.Scanner;
 
 
 
-public class load_save {
+public class LoadSave {
 	int i,j;
 	String FileName;
 	
-	load_save() {
+	LoadSave() {
 		FileName = null;
 	}
 	
-	public void save(String FileName, int[][] Load_Save) throws FileNotFoundException  {
+	public void save(String FileName, int[][] map) throws FileNotFoundException  {
 			PrintWriter output = new PrintWriter(FileName);
 			for(i=0;i<3;i++) {
 				for(j=0;j<3;j++) {
-					output.println(Load_Save[i][j]);
+					output.println(map[i][j]);
 				}
 			}
 			output.close();
@@ -29,12 +29,12 @@ public class load_save {
 		
 	
 	
-	public void load(String FileName, int[][] Load_Save) throws FileNotFoundException {
+	public void load(String FileName, int[][] map) throws FileNotFoundException {
 		File inputFile = new File(FileName);
 		Scanner scan = new Scanner(inputFile);
 		for(i=0;i<3;i++) {
 			for(j=0;j<3;j++) {
-				Load_Save[i][j] = scan.nextInt();
+				map[i][j] = scan.nextInt();
 			}
 		}
 		scan.close(); 

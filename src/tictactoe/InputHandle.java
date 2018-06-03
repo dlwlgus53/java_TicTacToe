@@ -2,10 +2,10 @@ package tictactoe;
 
 import java.util.Scanner;
 
-public class InputClass {
+public class InputHandle {
    //char 배열이 아니라 int 배열이라 파라미터 수장하겠습니당!
 	//static 굳이 안써도 될거같아요
-   public int input(int[][] user, int[][] com) {
+  /* public int run(int[][] map, int num) {
       
       Scanner kb = new Scanner(System.in);
       int number;
@@ -15,14 +15,32 @@ public class InputClass {
          number = kb.nextInt();
          //close추가했습니당.
          kb.close();
-      }while(check(number, user, com) == false);
+      }while(check(map, number) == false);
       kb.close();
       return number;
       
-   }
+   }*/
+   
+   public static void run(int[][] map) {
+	      
+	      Scanner kb = new Scanner(System.in);
+
+	      int number;
+	      
+	      do {
+	         System.out.println("<<Input number>>");
+	         number = kb.nextInt();
+	        
+	         //close추가했습니당.
+	      
+	      }while(check(map, number) == false);
+	   
+	    return;
+	      
+	   }
    //int배열로 수정하겠습니당
    //static 굳이 안써도 될거같아요
-   private boolean check (int num, int[][] user, int[][] com) {
+   private static boolean check (int[][] map, int num) {
 
       int row ;
       int column ;
@@ -73,16 +91,19 @@ public class InputClass {
          System.out.println(num + ": NO Number!!");
          return false;
       }else {
-    	  if(1==user[row][column]) {
+    	  if(1==map[row][column]) {
     		  System.out.println("It's already exist-user");
     		  return false;
     	  }
-    	  else if(1==com[row][column]) {
+    	  else if(-1==map[row][column]) {
     		  System.out.println("It's already exist-com");
     		  return false;
     	  }
-    	  else
+    	  else {
+    		  map[row][column]=1;
     		  return true;
+    	  }
+    		 
   
          
       }
