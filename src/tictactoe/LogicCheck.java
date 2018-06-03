@@ -8,7 +8,7 @@ public class LogicCheck {
 	static final int COMPUTER_WIN = 2;
 	static final int NO_WIN = 3;
 	
-	public int ScoreCheck(int[][] array, int turn) {
+	public int ScoreCheck(int[][] array) {
 		int userScore = 0;
 		int compScore = 0;
 		int i, j = 0;
@@ -18,9 +18,9 @@ public class LogicCheck {
 		
 		for (i = 0; i < 3; i++)
 			for (j = 0; j < 3; j++) {
-				if (scoreArray[i][j] == 1) // user inputÀ» 1ÀÌ¶ó°í Ç¥½Ã 
-					userScore =  (10^i)*(j+1);//ÀÌ»óÇÑ°Å°°¾Æ¿ä...
-				if (scoreArray[i][j] == -1) // computer inputÀ» -1ÀÌ¶ó°í Ç¥½Ã 
+				if (scoreArray[i][j] == 1) // user inputï¿½ï¿½ 1ï¿½Ì¶ï¿½ï¿½ Ç¥ï¿½ï¿½ 
+					userScore =  (10^i)*(j+1);//ï¿½Ì»ï¿½ï¿½Ñ°Å°ï¿½ï¿½Æ¿ï¿½...
+				if (scoreArray[i][j] == -1) // computer inputï¿½ï¿½ -1ï¿½Ì¶ï¿½ï¿½ Ç¥ï¿½ï¿½ 
 					compScore = (10^i)*(j+1);
 			}
 		
@@ -49,17 +49,17 @@ public class LogicCheck {
 	public static boolean tie(int[][] array) {
 		for (int row = 0; row < 3; row ++)
 			for (int column = 0; column < 3; column ++)
-				if (array[row][column] == 0) // ÇÏ³ª¶óµµ 0ÀÎ ¹è¿­ÀÌ ÀÖÀ¸¸é ¾ÆÁ÷ °ÔÀÓÀÌ ´ú ³¡³ª¼­ °è¼Ó °ÔÀÓ Áø
+				if (array[row][column] == 0) // ï¿½Ï³ï¿½ï¿½ï¿½ 0ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 					return false;
 			
-		return true; // ¸¸¾à ¹è¿­ÀÌ ´Ù Ã¡´Âµ¥ ÀÌ±ä »ç¶÷ÀÌ ¾øÀ¸¸é tie 
+		return true; // ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ Ã¡ï¿½Âµï¿½ ï¿½Ì±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ tie 
 	}
 		
 /*	public static void again() {
 		
 		Scanner kb = new Scanner(System.in);
 		
-		System.out.println("°ÔÀÓÀ» ´Ù½Ã ÇÏ½Ã°Ú½À´Ï±î? (y/n)");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½? (y/n)");
 		String Again = kb.nextLine();
 
 		if(Again.equalsIgnoreCase("y"))
@@ -71,12 +71,12 @@ public class LogicCheck {
 	}
 	
 	public static void startGame() {
-		System.out.println("t\t\t Tic - Tac - Toe"); //¿©±â´Â ´Ù½Ã °ÔÀÓÇÏ±â ÇßÀ» ¶§ °ÔÀÓ ½ÃÀÛÇÏ´Â ºÎºÐÀ» ºÒ·¯¿À·Á°í Çß´Âµ¥ ÀÏ´Ü ±×·±°Ô ¾ø¾î¼­ Á¦°¡ ÀÓ½Ã·Î ¸¸µé¾ú¾î¿ä..!
+		System.out.println("t\t\t Tic - Tac - Toe"); //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Îºï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß´Âµï¿½ ï¿½Ï´ï¿½ ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î¼­ ï¿½ï¿½ï¿½ï¿½ ï¿½Ó½Ã·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..!
 		System.out.println(" ");
-		System.out.println("\t\t\t°ÔÀÓÀ» ½ÃÀÛÇÕ´Ï´Ù!");
+		System.out.println("\t\t\tï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½!");
 	}
 	
 	public static void endGame() {
-		System.out.println("°ÔÀÓÀÌ ³¡³µ½À´Ï´Ù !"); //°ÔÀÓ ³¡³ª°í ¿©ÅÂ±îÁö Çß´ø °ÔÀÓ °á°ú¸¦ º¸¿©ÁÖ·Á°í ÇÏ´Âµ¥ ¾ÆÁ÷ ¿Ï¼ºµÇÁö ¾Ê¾Ò¾î¿ä...
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ !"); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â±ï¿½ï¿½ï¿½ ï¿½ß´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ ï¿½Ï´Âµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò¾ï¿½ï¿½...
 	}*/
 }
