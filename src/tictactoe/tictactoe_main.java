@@ -31,6 +31,9 @@ public class tictactoe_main {
 		LogicCheck check = new LogicCheck();
 		Print.origin();
 		
+		RockPaperSissor ordergame = new RockPaperSissor();
+		turn=ordergame.RPS();
+		
 		while(state.toLowerCase().charAt(0) == 'y') {
 			// Handle input (in InputHandle, Logic check will be called and return that value)
 			if (turn == COMPUTER) {
