@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class Computer {
 	private int level;
+	int return_result;
 	
 	Random random = new Random();
 	
@@ -15,27 +16,114 @@ public class Computer {
 		this.level = level;
 	}
 	
-	public void computerInput(int[][] map){
+	public void run(int[][] map) {
+		if (level == 1)
+			randomInput(map);
+//		else if (level == 2) {
+//			int[][] cacheMap = new int[3][3];
+//			for (int i = 0; i < 3; i++) {
+//				for (int j = 0; j < 3; j++) {
+//					cacheMap[i][j] = map[i][j];
+//				}
+//			}
+//			int result = tempInput(map, -1);
+//			System.out.println(result);
+//			if (result == -1) {
+//				System.out.println("Fail");
+//			}
+//			map[result / 3][result % 3] = -1;
+//		}
+		else if (level == 3)
+			computerInput(map);
+	}
+	
+	private void randomInput(int[][] map) {
+		int n = random.nextInt(9);
+		while(map[n / 3][n % 3] != 0)
+			n = random.nextInt(9);
 		
+		map[n / 3][n % 3] = -1;
+	}
+	
+//	private int tempInput(int[][] map, int turn) {
+//		// If there is winner, this is end position of recursion.
+//		// If winner is computer get BENEFIT, if not get PANELITY.
+//		LogicCheck check = new LogicCheck();
+//		int result;
+//		if ((result = check.ScoreCheck(map)) != 0) {
+//			if (result == 2) // If winner is computer
+//				return 100;
+//			else	// If winner is user
+//				return -100;
+//		}
+//		
+//		HashMap<Integer, Integer> max = new HashMap<Integer, Integer>();
+//		
+//		
+//		// Iterate all BLANK position to set piece in turn.
+//		for (int i = 0; i < 3; i++) {
+//			for (int j = 0; j < 3; j++) {
+//				if (map[i][j] == 0) {
+//					// turn variable means user or computer's  piece.
+//					// Set the piece on the board, and recursion.
+//					map[i][j] = turn;
+//					// Change turn
+//					turn = (turn == -1) ? 1 : -1;
+//					return_result += tempInput(map, turn);
+//					System.out.println(return_result);
+//					if (return_result > max) { 
+//						max = return_result;
+//						maxIndex = i * 3 + j;
+//					}
+//				}
+//			}
+//		}
+//		
+//		return maxIndex;
+//	}
+	
+	public void computerInput(int[][] map){
+		// 1ìˆœìœ„ ìŠ¹ë¦¬í•  ìˆ˜ ìˆëŠ” ê¸°íšŒê°€ ìˆëŠ”ì§€ ë¨¼ì € í™•ì¸í•œë‹¤. 
 		if(chkChance(map) != 9 && chkOvrlap(map, chkChance(map)/3, chkChance(map)%3) == false){
-			 map[chkChance(map)/3][chkChance(map)/2] = -1;
-		    }
+			map[chkChance(map)/3][chkChance(map)%3] = -1;
+		 }
 		 
 		 else{
-		      //À§Çè¿ä¼Ò°¡ ÇÏ³ªµµ ¾ø´Â °æ¿ì, ±×³É ·£´ıÀ¸·Î °í¸¥´Ù. 
+		      // 3ìˆœìœ„ ìœ„í—˜ìš”ì†Œê°€ í•˜ë‚˜ë„ ì—†ëŠ” ê²½ìš°, ë¨¼ì € ê°€ì¥ ì¤‘ê°„ì— ë‘”ë‹¤. ê¼­ì§€ì ì´ ê·¸ ë‹¤ìŒìœ¼ë¡œ ë‘ê³ , ë§ˆì§€ë§‰ ëœë¤ìœ¼ë¡œ ë‘”ë‹¤. 
 		       if(chkDanger(map) == 9){
-		           while(true){
-		              int computer = random.nextInt();
-		              int i = Math.abs(computer % 3);
-		              computer = Math.abs(random.nextInt());
-		              int j = Math.abs(computer % 3);
-		              if(chkOvrlap(map, i, j) == false){
-		            	  map[i][j] = -1;
-		                  break;
-		              }
-		           }
-		       }
-		       //À§Çè¿ä¼Ò°¡ ÀÖ´Â °æ¿ì. À§Çè¿ä¼Ò¸¦ Á¦°ÅÇÏ´Â ¹æÇâÀ¸·Î ³õ´Â´Ù. ´Ü, ÀÚ¸®°¡ ¸ğµÎ Ã¡À» ¶§´Â ´Ù¸¥ °÷À» ¸ğ»öÇÑ´Ù. 
+		    	   // ì¤‘ê°„
+		    	   if(chkOvrlap(map, 1, 1) == false){
+		    		   map[1][1] = -1;
+		    	   }
+		    	   // ê¼­ì§€ì 
+		    	   else if(chkOvrlap(map, 0, 0) == false){
+		    		   map[0][0] = -1;
+		    	   }
+		    	   else if(chkOvrlap(map, 2, 2) == false){
+		    		   map[2][2] = -1;
+		    	   }
+		    	   else if(chkOvrlap(map, 0, 2) == false){
+		    		   map[0][2] = -1;
+		    	   }
+		    	   else if(chkOvrlap(map, 2, 0) == false){
+		    		   map[2][0] = -1;
+		    	   }
+		    	   // ëœë¤
+		    	   else{
+		    		   while(true){
+		    			   int computer = random.nextInt();
+		    			   int i = Math.abs(computer % 3);
+		    			   computer = Math.abs(random.nextInt());
+		    			   int j = Math.abs(computer % 3);
+		    			   if(chkOvrlap(map, i, j) == false){
+		    				   map[i][j] = -1;
+		    				   break;
+		    			   }
+		    		   }
+		    	   }
+		       	}
+		       
+		       // 2ìˆœìœ„ ìœ„í—˜ìš”ì†Œê°€ ìˆëŠ” ê²½ìš°. ìœ„í—˜ìš”ì†Œë¥¼ ì œê±°í•˜ëŠ” ë°©í–¥ìœ¼ë¡œ ë†“ëŠ”ë‹¤. ë‹¨, ìë¦¬ê°€ ëª¨ë‘ ì°¼ì„ ë•ŒëŠ” ë‹¤ë¥¸ ê³³ì„ ëª¨ìƒ‰í•œë‹¤. 
 		       else{
 		           if(chkOvrlap(map, chkDanger(map)/3, chkDanger(map)%3) == false){
 		        	   map[chkDanger(map)/3][chkDanger(map)%3] = -1;
@@ -58,7 +146,7 @@ public class Computer {
 		 	 
 	}
 	
-	//ÄÄÇ»ÅÍ°¡ À§Çè»óÈ²À» °¨Áö 
+	//ì»´í“¨í„°ê°€ ìœ„í—˜ìƒí™©ì„ ê°ì§€ 
 	int chkDanger(int map[][]){
 		 if((map[0][0] == 1 && map[0][1] == 1) || (map[0][0] == 1 && map[0][2] == 1) || (map[0][1] == 1 && map[0][2] == 1)){
 		        for(int j = 0; j < 3; j++){
@@ -68,7 +156,7 @@ public class Computer {
 		            }
 		        }
 		    }
-		    else if((map[1][0] == 1 && map[1][1] == 1) || (map[1][0] == 1 && map[1][2] == 1) || (map[1][1] == 1 && map[1][2] == 1)){
+		    if((map[1][0] == 1 && map[1][1] == 1) || (map[1][0] == 1 && map[1][2] == 1) || (map[1][1] == 1 && map[1][2] == 1)){
 		    	for(int j = 0; j < 3; j++){
 		    		int i = 1;
 		            if(chkOvrlap(map, i, j) == false){
@@ -76,7 +164,7 @@ public class Computer {
 		            }
 		        }
 		    }
-		    else if((map[2][0] == 1 && map[2][1] == 1) || (map[2][0] == 1 && map[2][2] == 1) || (map[2][1] == 1 && map[2][2] == 1)){
+		    if((map[2][0] == 1 && map[2][1] == 1) || (map[2][0] == 1 && map[2][2] == 1) || (map[2][1] == 1 && map[2][2] == 1)){
 		        for(int j = 0; j < 3; j++){
 		        	int i = 2;
 		            if(chkOvrlap(map, i, j) == false){
@@ -84,7 +172,7 @@ public class Computer {
 		            }
 		        }
 		    }
-		    else if((map[0][0] == 1 && map[1][0] == 1) || (map[0][0] == 1 && map[2][0] == 1) || (map[1][0] == 1 && map[2][0] == 1)){
+		    if((map[0][0] == 1 && map[1][0] == 1) || (map[0][0] == 1 && map[2][0] == 1) || (map[1][0] == 1 && map[2][0] == 1)){
 		        for(int i = 0; i < 3; i++){
 		        	int j = 0;
 		            if(chkOvrlap(map, i, j) == false){
@@ -92,7 +180,7 @@ public class Computer {
 		            }
 		        }
 		    }
-		    else if((map[0][1] == 1 && map[1][1] == 1) || (map[0][1] == 1 && map[2][1] == 1) || (map[1][1] == 1 && map[2][1] == 1)){
+		    if((map[0][1] == 1 && map[1][1] == 1) || (map[0][1] == 1 && map[2][1] == 1) || (map[1][1] == 1 && map[2][1] == 1)){
 		        for(int i = 0; i < 3; i++){
 		        	int j = 1;
 		            if(chkOvrlap(map, i, j) == false){
@@ -100,7 +188,7 @@ public class Computer {
 		            }
 		        }
 		    }
-		    else if((map[0][2] == 1 && map[1][2] == 1) || (map[0][2] == 1 && map[2][2] == 1) || (map[1][2] == 1 && map[2][2] == 1)){
+		    if((map[0][2] == 1 && map[1][2] == 1) || (map[0][2] == 1 && map[2][2] == 1) || (map[1][2] == 1 && map[2][2] == 1)){
 		        for(int i = 0; i < 3; i++){
 		        	int j = 2;
 		            if(chkOvrlap(map, i, j) == false){
@@ -108,7 +196,7 @@ public class Computer {
 		            }
 		        }
 		    }
-		    else if((map[0][0] == 1 && map[1][1] == 1) || (map[0][0] == 1 && map[2][2] == 1) || (map[1][1] == 1 && map[2][2] == 1)){
+		    if((map[0][0] == 1 && map[1][1] == 1) || (map[0][0] == 1 && map[2][2] == 1) || (map[1][1] == 1 && map[2][2] == 1)){
 		        for(int i = 0; i < 3; i++){
 		        	int j = i;
 		            if(chkOvrlap(map, i, j) == false){
@@ -116,16 +204,18 @@ public class Computer {
 		            }
 		        }
 		    }
-		    else if((map[0][2] == 1 && map[1][1] == 1) || (map[0][2] == 1 && map[2][0] == 1) || (map[1][1] == 1 && map[2][0] == 1)){
-		    	for(int j = 0; j < 3; j++){
-		    		for(int i = 0; i < 3; i++){
-		    			if(chkOvrlap(map, i, j) == false){
-		    				return 3*i+j;
-		    			}
-		    		}
+		    if((map[0][2] == 1 && map[1][1] == 1) || (map[0][2] == 1 && map[2][0] == 1) || (map[1][1] == 1 && map[2][0] == 1)){
+		    	if(chkOvrlap(map, 0, 2) == false){
+		    		return 2;
+		    	}
+		    	else if(chkOvrlap(map, 1, 1) == false){
+		    		return 4;
+		    	}
+		    	else if(chkOvrlap(map, 2, 0) == false){
+		    		return 6;
 		    	}
 		    }
-			return 9;
+		    return 9;
 	}
 
 	int chkChance(int map[][]){
@@ -137,7 +227,7 @@ public class Computer {
 	            }
 	        }
 	    }
-	    else if((map[1][0] == -1 && map[1][1] == -1) || (map[1][0] == -1 && map[1][2] == -1) || (map[1][1] == -1 && map[1][2] == -1)){
+	    if((map[1][0] == -1 && map[1][1] == -1) || (map[1][0] == -1 && map[1][2] == -1) || (map[1][1] == -1 && map[1][2] == -1)){
 	    	for(int j = 0; j < 3; j++){
 	    		int i = 1;
 	            if(chkOvrlap(map, i, j) == false){
@@ -145,7 +235,7 @@ public class Computer {
 	            }
 	        }
 	    }
-	    else if((map[2][0] == -1 && map[2][1] == -1) || (map[2][0] == -1 && map[2][2] == -1) || (map[2][1] == -1 && map[2][2] == -1)){
+	    if((map[2][0] == -1 && map[2][1] == -1) || (map[2][0] == -1 && map[2][2] == -1) || (map[2][1] == -1 && map[2][2] == -1)){
 	        for(int j = 0; j < 3; j++){
 	        	int i = 2;
 	            if(chkOvrlap(map, i, j) == false){
@@ -153,7 +243,7 @@ public class Computer {
 	            }
 	        }
 	    }
-	    else if((map[0][0] == -1 && map[1][0] == -1) || (map[0][0] == -1 && map[2][0] == -1) || (map[1][0] == -1 && map[2][0] == -1)){
+	    if((map[0][0] == -1 && map[1][0] == -1) || (map[0][0] == -1 && map[2][0] == -1) || (map[1][0] == -1 && map[2][0] == -1)){
 	        for(int i = 0; i < 3; i++){
 	        	int j = 0;
 	            if(chkOvrlap(map, i, j) == false){
@@ -161,7 +251,7 @@ public class Computer {
 	            }
 	        }
 	    }
-	    else if((map[0][1] == -1 && map[1][1] == -1) || (map[0][1] == -1 && map[2][1] == -1) || (map[1][1] == -1 && map[2][1] == -1)){
+	    if((map[0][1] == -1 && map[1][1] == -1) || (map[0][1] == -1 && map[2][1] == -1) || (map[1][1] == -1 && map[2][1] == -1)){
 	        for(int i = 0; i < 3; i++){
 	        	int j = 1;
 	            if(chkOvrlap(map, i, j) == false){
@@ -169,7 +259,7 @@ public class Computer {
 	            }
 	        }
 	    }
-	    else if((map[0][2] == -1 && map[1][2] == -1) || (map[0][2] == -1 && map[2][2] == -1) || (map[1][2] == -1 && map[2][2] == -1)){
+	    if((map[0][2] == -1 && map[1][2] == -1) || (map[0][2] == -1 && map[2][2] == -1) || (map[1][2] == -1 && map[2][2] == -1)){
 	        for(int i = 0; i < 3; i++){
 	        	int j = 2;
 	            if(chkOvrlap(map, i, j) == false){
@@ -177,7 +267,7 @@ public class Computer {
 	            }
 	        }
 	    }
-	    else if((map[0][0] == -1 && map[1][1] == -1) || (map[0][0] == -1 && map[2][2] == -1) || (map[1][1] == -1 && map[2][2] == -1)){
+	    if((map[0][0] == -1 && map[1][1] == -1) || (map[0][0] == -1 && map[2][2] == -1) || (map[1][1] == -1 && map[2][2] == -1)){
 	        for(int i = 0; i < 3; i++){
 	        	int j = i;
 	            if(chkOvrlap(map, i, j) == false){
@@ -185,13 +275,15 @@ public class Computer {
 	            }
 	        }
 	    }
-	    else if((map[0][2] == -1 && map[1][1] == -1) || (map[0][2] == -1 && map[2][0] == -1) || (map[1][1] == -1 && map[2][0] == -1)){
-	    	for(int j = 0; j < 3; j++){
-	    		for(int i = 0; i < 3; i++){
-	    			if(chkOvrlap(map, i, j) == false){
-	    				return 3*i+j;
-	    			}
-	    		}
+	    if((map[0][2] == -1 && map[1][1] == -1) || (map[0][2] == -1 && map[2][0] == -1) || (map[1][1] == -1 && map[2][0] == -1)){
+	    	if(chkOvrlap(map, 0, 2) == false){
+	    		return 2;
+	    	}
+	    	else if(chkOvrlap(map, 1, 1) == false){
+	    		return 4;
+	    	}
+	    	else if(chkOvrlap(map, 2, 0) == false){
+	    		return 6;
 	    	}
 	    }
 		return 9;
