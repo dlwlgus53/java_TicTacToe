@@ -48,11 +48,11 @@ public int RPS() {
 	RockPaperSissor.run();
 	
 	switch (val) {
-	case 0:
+	case 0://가위
 		if (num == 0) {
 			System.out.println("비겼습니다.");
 			RockPaperSissor.run();
-		}else if (num == 1) {
+		}else if (num == 1) {//바위
 			System.out.println("졌습니다.");
 			return COMPUTER;
 		}else if (num == 2) {
@@ -66,14 +66,15 @@ public int RPS() {
 			return USER;
 		}else if (num == 1) {//바위
 			System.out.println("비겼습니다.");
-			return COMPUTER;
+			RockPaperSissor.run();
+		
 		}else if (num == 2) {//보
 			System.out.println("졌습니다.");
-			RockPaperSissor.run();
+			return COMPUTER;
 		}
 		break;
 
-	case 2:
+	case 2://보
 		if (num == 0) {
 			System.out.println("졌습니다.");
 			return COMPUTER;

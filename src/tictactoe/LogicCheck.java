@@ -47,7 +47,8 @@ public class LogicCheck {
 	public static boolean tie(int[][] array) {
 		for (int row = 0; row < 3; row ++)
 			for (int column = 0; column < 3; column ++)
-				if (array[row][column] == 0) // 하나라도 0인 배열이 있으면 아직 게임이 덜 끝나서 계속 게임 진					return false;
+				if (array[row][column] == 0) return false;
 			
-		return true; // 만약 배열이 다 찼는데 이긴 사람이 없으면 tie 	}
+		return true; 
+}
 }
