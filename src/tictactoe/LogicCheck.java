@@ -1,10 +1,6 @@
 package tictactoe;
 
-public class LogicCheck {
-	static final int CONTINUE = 0;
-	static final int USER_WIN = 1;
-	static final int COMPUTER_WIN = 2;
-	static final int NO_WIN = 3;
+public class LogicCheck extends Game {
 	
 	public int ScoreCheck(int[][] scoreArray) {
 		int win = 0;

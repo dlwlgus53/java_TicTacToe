@@ -39,33 +39,6 @@ public class Print {
 		System.out.println("\n\n");
 	}
 
-	/*private void sum(int[][] user_load,int[][] computer_load ) {
-		//user = 1;
-		//com = -1;
-
-		int i=0,j=0;
-		for(i=0;i<3;i++) {
-			for(j=0;j<3;j++) {
-				UserAndCom[i][j] = 0;
-			}
-		}
-		//compare with user_load and update UserAndCom
-		for(i=0;i<3;i++) {
-			for(j=0;j<3;j++) {
-				if(user_load[i][j]==1)
-					UserAndCom[i][j] = 1;
-			}
-		}
-
-		//compare with computer_load and update UserAndCom
-		for(i=0;i<3;i++) {
-			for(j=0;j<3;j++) {
-				if(computer_load[i][j]==1)
-					UserAndCom[i][j] = -1;
-			}
-		}
-
-	}
-	*/
+	
 
 }

@@ -3,13 +3,10 @@ package tictactoe;
 import java.util.Scanner;
 import java.util.Random;
 
-public class RockPaperSissor {
+public class RockPaperSissor extends Game {
 	    static int num;//컴퓨터 랜덤 값 
 		static int val=0;// 컴퓨터-사용자 비교 
 		static String scanString;//사용자 가위 바위 보 입력
-		
-		static final int COMPUTER = 1;
-		static final int USER = 0;
 		
 	public static void run() {
 		

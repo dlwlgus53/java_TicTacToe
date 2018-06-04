@@ -3,14 +3,6 @@ package tictactoe;
 import java.util.Scanner;
 
 public class tictactoe_main {
-	static final int COMPUTER = 1;
-	static final int USER = 0;
-	
-	// For test, these will be removed when program released
-	static final int CONTINUE = 0;
-	static final int USER_WIN = 1;
-	static final int COMPUTER_WIN = 2;
-	static final int NO_WIN = 3;
 
 	public static void main(String[] args) {
 		
@@ -23,20 +15,24 @@ public class tictactoe_main {
 
 		// Array initialize
 		SaveMakeClean(map);
+		System.out.println("choose the leve 1.easy 2.middle 3.hard");
+		int level = scanner.nextInt();
 		
-		Computer ai = new Computer();
-		int turn = USER;
-		int flag = CONTINUE;
 		
-		LogicCheck check = new LogicCheck();
+		Computer ai = new Computer(level);
+		int turn = Game.USER;
+		int flag = Game.CONTINUE;
+	
+		
+		
 		Print.origin();
-		
+		LogicCheck check = new LogicCheck();
 		RockPaperSissor ordergame = new RockPaperSissor();
 		turn=ordergame.RPS();
 		
 		while(state.toLowerCase().charAt(0) == 'y') {
 			// Handle input (in InputHandle, Logic check will be called and return that value)
-			if (turn == COMPUTER) {
+			if (turn == Game.COMPUTER) {
 				System.out.println("<<computer>>");
 				ai.computerInput(map);
 				flag = check.ScoreCheck(map);
@@ -55,13 +51,13 @@ public class tictactoe_main {
 			}
 			Print.show(map);
 			
-			if (flag != CONTINUE) {
+			if (flag != Game.CONTINUE) {
 
-				if (turn == USER_WIN) {
+				if (turn == Game.USER_WIN) {
 					// User win process
 					System.out.println("You win!!");
 				}
-				else if(turn == COMPUTER_WIN) {
+				else if(turn == Game.COMPUTER_WIN) {
 					// Computer win process
 					System.out.println("Computer win!!");
 				}
@@ -73,11 +69,11 @@ public class tictactoe_main {
 				state = scanner.next();
 				if (state.toLowerCase().charAt(0) == 'y') {
 					SaveMakeClean(map);
-					turn = USER;
+					turn = Game.USER;
 					continue;
 				}
 			}
-			turn = (turn == COMPUTER) ? USER : COMPUTER;
+			turn = (turn == Game.COMPUTER) ? Game.USER : Game.COMPUTER;
 		}
 		
 		scanner.close();

@@ -2,9 +2,8 @@ package tictactoe;
 
 import java.util.Random;
 
-public class Computer {
+public class Computer extends Game implements Runnable {
 	private int level;
-	int return_result;
 	
 	Random random = new Random();
 	
@@ -17,7 +16,7 @@ public class Computer {
 	}
 	
 
-		// 1순위 승리할 수 있는 기회가 있는지 먼저 확인한다. 
+	// 1순위 승리할 수 있는 기회가 있는지 먼저 확인한다. 
 	public void run(int[][] map) {
 		if (level == 1)
 			randomInput(map);
