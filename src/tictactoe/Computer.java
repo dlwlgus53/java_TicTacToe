@@ -16,27 +16,12 @@ public class Computer {
 		this.level = level;
 	}
 	
-<<<<<<< HEAD
-	public void computerInput(int[][] map){
-		// 1¼øÀ§ ½Â¸®ÇÒ ¼ö ÀÖ´Â ±âÈ¸°¡ ÀÖ´ÂÁö ¸ÕÀú È®ÀÎÇÑ´Ù. 
-=======
+
+		// 1ìˆœìœ„ ìŠ¹ë¦¬í•  ìˆ˜ ìˆëŠ” ê¸°íšŒê°€ ìˆëŠ”ì§€ ë¨¼ì € í™•ì¸í•œë‹¤. 
 	public void run(int[][] map) {
 		if (level == 1)
 			randomInput(map);
-//		else if (level == 2) {
-//			int[][] cacheMap = new int[3][3];
-//			for (int i = 0; i < 3; i++) {
-//				for (int j = 0; j < 3; j++) {
-//					cacheMap[i][j] = map[i][j];
-//				}
-//			}
-//			int result = tempInput(map, -1);
-//			System.out.println(result);
-//			if (result == -1) {
-//				System.out.println("Fail");
-//			}
-//			map[result / 3][result % 3] = -1;
-//		}
+
 		else if (level == 3)
 			computerInput(map);
 	}
@@ -49,68 +34,21 @@ public class Computer {
 		map[n / 3][n % 3] = -1;
 	}
 	
-//	private int tempInput(int[][] map, int turn) {
-//		// If there is winner, this is end position of recursion.
-//		// If winner is computer get BENEFIT, if not get PANELITY.
-//		LogicCheck check = new LogicCheck();
-//		int result;
-//		if ((result = check.ScoreCheck(map)) != 0) {
-//			if (result == 2) // If winner is computer
-//				return 100;
-//			else	// If winner is user
-//				return -100;
-//		}
-//		
-//		HashMap<Integer, Integer> max = new HashMap<Integer, Integer>();
-//		
-//		
-//		// Iterate all BLANK position to set piece in turn.
-//		for (int i = 0; i < 3; i++) {
-//			for (int j = 0; j < 3; j++) {
-//				if (map[i][j] == 0) {
-//					// turn variable means user or computer's  piece.
-//					// Set the piece on the board, and recursion.
-//					map[i][j] = turn;
-//					// Change turn
-//					turn = (turn == -1) ? 1 : -1;
-//					return_result += tempInput(map, turn);
-//					System.out.println(return_result);
-//					if (return_result > max) { 
-//						max = return_result;
-//						maxIndex = i * 3 + j;
-//					}
-//				}
-//			}
-//		}
-//		
-//		return maxIndex;
-//	}
+
 	
 	public void computerInput(int[][] map){
-		// 1ìˆœìœ„ ìŠ¹ë¦¬í•  ìˆ˜ ìˆëŠ” ê¸°íšŒê°€ ìˆëŠ”ì§€ ë¨¼ì € í™•ì¸í•œë‹¤. 
->>>>>>> c5709047d73b86168aaef554dc993cac478d0540
 		if(chkChance(map) != 9 && chkOvrlap(map, chkChance(map)/3, chkChance(map)%3) == false){
 			map[chkChance(map)/3][chkChance(map)%3] = -1;
 		 }
 		 
 		 else{
-<<<<<<< HEAD
-		      // 3¼øÀ§ À§Çè¿ä¼Ò°¡ ÇÏ³ªµµ ¾ø´Â °æ¿ì, ¸ÕÀú °¡Àå Áß°£¿¡ µĞ´Ù. ²ÀÁöÁ¡ÀÌ ±× ´ÙÀ½À¸·Î µÎ°í, ¸¶Áö¸· ·£´ıÀ¸·Î µĞ´Ù. 
-		       if(chkDanger(map) == 9){
-		    	   // Áß°£
-		    	   if(chkOvrlap(map, 1, 1) == false){
-		    		   map[1][1] = -1;
-		    	   }
-		    	   // ²ÀÁöÁ¡
-=======
 		      // 3ìˆœìœ„ ìœ„í—˜ìš”ì†Œê°€ í•˜ë‚˜ë„ ì—†ëŠ” ê²½ìš°, ë¨¼ì € ê°€ì¥ ì¤‘ê°„ì— ë‘”ë‹¤. ê¼­ì§€ì ì´ ê·¸ ë‹¤ìŒìœ¼ë¡œ ë‘ê³ , ë§ˆì§€ë§‰ ëœë¤ìœ¼ë¡œ ë‘”ë‹¤. 
 		       if(chkDanger(map) == 9){
-		    	   // ì¤‘ê°„
+		
 		    	   if(chkOvrlap(map, 1, 1) == false){
 		    		   map[1][1] = -1;
 		    	   }
-		    	   // ê¼­ì§€ì 
->>>>>>> c5709047d73b86168aaef554dc993cac478d0540
+		  
 		    	   else if(chkOvrlap(map, 0, 0) == false){
 		    		   map[0][0] = -1;
 		    	   }
@@ -123,11 +61,7 @@ public class Computer {
 		    	   else if(chkOvrlap(map, 2, 0) == false){
 		    		   map[2][0] = -1;
 		    	   }
-<<<<<<< HEAD
-		    	   // ·£´ı
-=======
 		    	   // ëœë¤
->>>>>>> c5709047d73b86168aaef554dc993cac478d0540
 		    	   else{
 		    		   while(true){
 		    			   int computer = random.nextInt();
@@ -141,12 +75,8 @@ public class Computer {
 		    		   }
 		    	   }
 		       	}
-		       
-<<<<<<< HEAD
-		       // 2¼øÀ§ À§Çè¿ä¼Ò°¡ ÀÖ´Â °æ¿ì. À§Çè¿ä¼Ò¸¦ Á¦°ÅÇÏ´Â ¹æÇâÀ¸·Î ³õ´Â´Ù. ´Ü, ÀÚ¸®°¡ ¸ğµÎ Ã¡À» ¶§´Â ´Ù¸¥ °÷À» ¸ğ»öÇÑ´Ù. 
-=======
+		 
 		       // 2ìˆœìœ„ ìœ„í—˜ìš”ì†Œê°€ ìˆëŠ” ê²½ìš°. ìœ„í—˜ìš”ì†Œë¥¼ ì œê±°í•˜ëŠ” ë°©í–¥ìœ¼ë¡œ ë†“ëŠ”ë‹¤. ë‹¨, ìë¦¬ê°€ ëª¨ë‘ ì°¼ì„ ë•ŒëŠ” ë‹¤ë¥¸ ê³³ì„ ëª¨ìƒ‰í•œë‹¤. 
->>>>>>> c5709047d73b86168aaef554dc993cac478d0540
 		       else{
 		           if(chkOvrlap(map, chkDanger(map)/3, chkDanger(map)%3) == false){
 		        	   map[chkDanger(map)/3][chkDanger(map)%3] = -1;
@@ -169,7 +99,7 @@ public class Computer {
 		 	 
 	}
 	
-	//ì»´í“¨í„°ê°€ ìœ„í—˜ìƒí™©ì„ ê°ì§€ 
+	//è€ŒëŒ„ë²‚ï¿½ê½£åª›ï¿½ ï¿½ìï¿½ë¿•ï¿½ê¸½ï¿½ì†´ï¿½ì“£ åª›ë¨¯ï¿½ 
 	int chkDanger(int map[][]){
 		 if((map[0][0] == 1 && map[0][1] == 1) || (map[0][0] == 1 && map[0][2] == 1) || (map[0][1] == 1 && map[0][2] == 1)){
 		        for(int j = 0; j < 3; j++){
