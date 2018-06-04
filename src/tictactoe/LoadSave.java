@@ -40,25 +40,25 @@ public class LoadSave {
 		scan.close(); 
 		
 	}
-	
-	public void run(int temp, int[][]Load_Save){
-		if(temp==1)
-			Load_Save[0][0]=1;
-		if(temp==2)
-			Load_Save[0][1]=1;
-		if(temp==3)
-			Load_Save[0][2]=1;
-		if(temp==4)
-			Load_Save[1][0]=1;
-		if(temp==5)
-			Load_Save[1][1]=1;
-		if(temp==6)
-			Load_Save[1][2]=1;
-		if(temp==7)
-			Load_Save[2][0]=1;
-		if(temp==8)
-			Load_Save[2][1]=1;
-		if(temp==9)
-			Load_Save[2][2]=1;		
-	}
+//	
+//	public void run(int temp, int[][]Load_Save){
+//		if(temp==1)
+//			Load_Save[0][0]=1;
+//		if(temp==2)
+//			Load_Save[0][1]=1;
+//		if(temp==3)
+//			Load_Save[0][2]=1;
+//		if(temp==4)
+//			Load_Save[1][0]=1;
+//		if(temp==5)
+//			Load_Save[1][1]=1;
+//		if(temp==6)
+//			Load_Save[1][2]=1;
+//		if(temp==7)
+//			Load_Save[2][0]=1;
+//		if(temp==8)
+//			Load_Save[2][1]=1;
+//		if(temp==9)
+//			Load_Save[2][2]=1;		
+//	}
 }
