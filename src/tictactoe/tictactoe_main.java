@@ -30,16 +30,19 @@ public class tictactoe_main {
 		LogicCheck check = new LogicCheck();
 		Print.origin();
 		
+		RockPaperSissor ordergame = new RockPaperSissor();
+		turn=ordergame.RPS();
+		
 		while(true) {
 			// Handle input (in InputHandle, Logic check will be called and return that value)
 			if (turn == COMPUTER) {
 				System.out.println("<<computer>>");
 				ai.computerInput(map);
-				flag = check.ScoreCheck(map, COMPUTER);
+				flag = check.ScoreCheck(map);
 			}
 			else {
 					InputHandle.run(map);
-					flag = check.ScoreCheck(map, USER);
+					flag = check.ScoreCheck(map);
 			}
 			
 			// Save 

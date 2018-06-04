@@ -18,7 +18,7 @@ public class Computer {
 	public void computerInput(int[][] map){
 		
 		if(chkChance(map) != 9 && chkOvrlap(map, chkChance(map)/3, chkChance(map)%3) == false){
-			 map[chkChance(map)/3][chkChance(map)/2] = -1;
+			 map[chkChance(map)/3][chkChance(map)%3] = -1;
 		    }
 		 
 		 else{
