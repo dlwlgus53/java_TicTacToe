@@ -1,9 +1,3 @@
-0
-0
-0
-0
--1
-0
-0
-0
-0
+User Score: 0
+Computer Score: 1
+COMPUTER WIN!!

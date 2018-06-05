@@ -15,12 +15,11 @@ public class Computer extends Game implements Runnable {
 		this.level = level;
 	}
 	
-
-	// 1순위 승리할 수 있는 기회가 있는지 먼저 확인한다. 
 	public void run(int[][] map) {
 		if (level == 1)
 			randomInput(map);
-
+		else if(level == 2)
+			middleInput(map);
 		else if (level == 3)
 			computerInput(map);
 	}
@@ -33,7 +32,60 @@ public class Computer extends Game implements Runnable {
 		map[n / 3][n % 3] = -1;
 	}
 	
-
+	public void middleInput(int [][] map){
+		  if(chkDanger(map) == 9){
+				
+	    	   if(chkOvrlap(map, 1, 1) == false){
+	    		   map[1][1] = -1;
+	    	   }
+	  
+	    	   else if(chkOvrlap(map, 0, 0) == false){
+	    		   map[0][0] = -1;
+	    	   }
+	    	   else if(chkOvrlap(map, 2, 2) == false){
+	    		   map[2][2] = -1;
+	    	   }
+	    	   else if(chkOvrlap(map, 0, 2) == false){
+	    		   map[0][2] = -1;
+	    	   }
+	    	   else if(chkOvrlap(map, 2, 0) == false){
+	    		   map[2][0] = -1;
+	    	   }
+	    	   
+	    	   else{
+	    		   while(true){
+	    			   int computer = random.nextInt();
+	    			   int i = Math.abs(computer % 3);
+	    			   computer = Math.abs(random.nextInt());
+	    			   int j = Math.abs(computer % 3);
+	    			   if(chkOvrlap(map, i, j) == false){
+	    				   map[i][j] = -1;
+	    				   break;
+	    			   }
+	    		   }
+	    	   }
+	       	}
+	 
+	      
+	       else{
+	           if(chkOvrlap(map, chkDanger(map)/3, chkDanger(map)%3) == false){
+	        	   map[chkDanger(map)/3][chkDanger(map)%3] = -1;
+	           }
+	           else{
+	               while(true){
+	               int computer = Math.abs(random.nextInt());
+		           int i = computer % 3;
+		           computer = Math.abs(random.nextInt());
+		           int j = computer % 3;
+	                if(chkOvrlap(map, i, j) == false){
+	                    map[i][j] = -1;
+	                    break;
+	                 }
+	               }
+	           }
+	       }
+		
+	}
 	
 	public void computerInput(int[][] map){
 		if(chkChance(map) != 9 && chkOvrlap(map, chkChance(map)/3, chkChance(map)%3) == false){
@@ -41,7 +93,7 @@ public class Computer extends Game implements Runnable {
 		 }
 		 
 		 else{
-		      // 3순위 위험요소가 하나도 없는 경우, 먼저 가장 중간에 둔다. 꼭지점이 그 다음으로 두고, 마지막 랜덤으로 둔다. 
+		      
 		       if(chkDanger(map) == 9){
 		
 		    	   if(chkOvrlap(map, 1, 1) == false){
@@ -60,7 +112,7 @@ public class Computer extends Game implements Runnable {
 		    	   else if(chkOvrlap(map, 2, 0) == false){
 		    		   map[2][0] = -1;
 		    	   }
-		    	   // 랜덤
+		    	  
 		    	   else{
 		    		   while(true){
 		    			   int computer = random.nextInt();
@@ -75,7 +127,7 @@ public class Computer extends Game implements Runnable {
 		    	   }
 		       	}
 		 
-		       // 2순위 위험요소가 있는 경우. 위험요소를 제거하는 방향으로 놓는다. 단, 자리가 모두 찼을 때는 다른 곳을 모색한다. 
+		        
 		       else{
 		           if(chkOvrlap(map, chkDanger(map)/3, chkDanger(map)%3) == false){
 		        	   map[chkDanger(map)/3][chkDanger(map)%3] = -1;
@@ -98,7 +150,6 @@ public class Computer extends Game implements Runnable {
 		 	 
 	}
 	
-	//而댄벂�꽣媛� �쐞�뿕�긽�솴�쓣 媛먯� 
 	int chkDanger(int map[][]){
 		 if((map[0][0] == 1 && map[0][1] == 1) || (map[0][0] == 1 && map[0][2] == 1) || (map[0][1] == 1 && map[0][2] == 1)){
 		        for(int j = 0; j < 3; j++){

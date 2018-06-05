@@ -8,57 +8,79 @@ import java.util.Scanner;
 
 
 public class LoadSave {
-	int i,j;
-	String FileName;
-	
-	LoadSave() {
-		FileName = null;
-	}
-	
-	public void save(String FileName, int[][] map) throws FileNotFoundException  {
-			PrintWriter output = new PrintWriter(FileName);
-			for(i=0;i<3;i++) {
-				for(j=0;j<3;j++) {
-					output.println(map[i][j]);
-				}
-			}
-			output.close();
-	}
-			
-
-		
-	
-	
-	public void load(String FileName, int[][] map) throws FileNotFoundException {
-		File inputFile = new File(FileName);
-		Scanner scan = new Scanner(inputFile);
-		for(i=0;i<3;i++) {
-			for(j=0;j<3;j++) {
-				map[i][j] = scan.nextInt();
-			}
-		}
-		scan.close(); 
-		
-	}
-//	
-//	public void run(int temp, int[][]Load_Save){
-//		if(temp==1)
-//			Load_Save[0][0]=1;
-//		if(temp==2)
-//			Load_Save[0][1]=1;
-//		if(temp==3)
-//			Load_Save[0][2]=1;
-//		if(temp==4)
-//			Load_Save[1][0]=1;
-//		if(temp==5)
-//			Load_Save[1][1]=1;
-//		if(temp==6)
-//			Load_Save[1][2]=1;
-//		if(temp==7)
-//			Load_Save[2][0]=1;
-//		if(temp==8)
-//			Load_Save[2][1]=1;
-//		if(temp==9)
-//			Load_Save[2][2]=1;		
-//	}
+   int i,j;
+   String FileName;
+   int user_score = 0;
+   int computer_score = 0;
+   //파일 생성
+   
+   LoadSave() {
+      FileName = null;
+   }
+   
+   
+   public void run(int WHO, String FileName)  {
+	   resultVal(WHO);
+	   try {
+		   saveResult(FileName);
+	   } catch (FileNotFoundException e) {
+		  e.printStackTrace();
+	   }
+	   printData(FileName);
+	   
+   }
+   
+   //결과 받아오기 
+   public void resultVal(int WHO) {
+      switch(WHO) {
+      case 1:
+         user_score++;
+         break;
+      case 2:
+         computer_score++;
+         break;
+   }
+      }
+   
+   
+   public void saveResult(String FileName) throws FileNotFoundException {
+	   	   
+       PrintWriter output = new PrintWriter(FileName);
+       
+       output.println("User Score: " + user_score);
+       output.println("Computer Score: " + computer_score);
+       
+       if( user_score == computer_score ) {
+          output.println("DRAW!!");
+       }
+       else if(user_score < computer_score ) {
+          output.println("COMPUTER WIN!!");
+       }
+       else if(user_score > computer_score ) {
+          output.println("USER WIN!!");
+       }
+       output.close();
+   }
+   //출력
+   
+   public void printData(String fileName) {
+      Scanner inputStream = null;
+      
+      try {
+         inputStream = new Scanner(new File(fileName));
+      }
+      catch (FileNotFoundException e){
+            System.out.println("Error opening the file " + fileName);
+            System.exit(0);
+      }
+      
+      while(inputStream.hasNext()) {
+         String line = inputStream.nextLine();
+         System.out.println(line);
+      }
+      inputStream.close();
+      
+   }
+   
+   
 }

@@ -15,7 +15,7 @@ public class tictactoe_main {
 
 		// Array initialize
 		SaveMakeClean(map);
-		System.out.println("choose the leve 1.easy 2.middle 3.hard");
+		System.out.println("choose the level 1.easy 2.middle 3.hard");
 		int level = scanner.nextInt();
 		
 		
@@ -42,42 +42,29 @@ public class tictactoe_main {
 					flag = check.ScoreCheck(map);
 			}
 			
-			// Save 
-			try {
-				loadSaveHandler.save("load_save.txt", map);
-			}
-			catch (Exception e) {
-				System.out.println(e.getMessage());
-			}
 			Print.show(map);
 			
-			if (flag != Game.CONTINUE) {
-
-				if (turn == Game.USER_WIN) {
-					// User win process
-					System.out.println("You win!!");
-				}
-				else if(turn == Game.COMPUTER_WIN) {
-					// Computer win process
-					System.out.println("Computer win!!");
-				}
-				else {
-						System.out.println("no winner!!");
-				}
-				
+			if(flag != Game.CONTINUE) {
+				check.winnerCheck(flag);
+				loadSaveHandler.run(flag, "load_save.txt");
 				System.out.print("Do you want to play game again? (Y/N) ");
 				state = scanner.next();
 				if (state.toLowerCase().charAt(0) == 'y') {
 					SaveMakeClean(map);
-					turn = Game.USER;
+					turn = (flag == Game.COMPUTER_WIN) ? Game.USER : Game.COMPUTER;
+
 					continue;
+				
 				}
+				else loadSaveHandler.printData("load_save.txt");
 			}
 			turn = (turn == Game.COMPUTER) ? Game.USER : Game.COMPUTER;
+			//scanner.close();
 		}
-		
-		scanner.close();
 	}
+		
+	
+	
 
 	private static void SaveMakeClean(int[][]array) {
 		int i=0;
