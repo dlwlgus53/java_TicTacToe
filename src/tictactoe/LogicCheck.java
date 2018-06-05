@@ -48,18 +48,5 @@ public class LogicCheck extends Game {
 		return true; 
 }
 	
-	public void winnerCheck(int check) {
-	      
-	      if (check == USER_WIN) {
-	         // User win process
-	         System.out.println("You win!!");
-	      }
-	      else if(check == COMPUTER_WIN) {
-	         // Computer win process
-	         System.out.println("Computer win!!");
-	      }
-	      else {
-	         System.out.println("no winner!!");
-	      }
-	}
+
 }

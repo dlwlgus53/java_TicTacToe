@@ -26,8 +26,11 @@ public class RockPaperSissor extends Game {
 			val = 1;
 		}else if (scanString.equals("보")) {
 			val = 2;
+		}else {
+			val = -1;
+			System.out.println("오타 입니다.");
 		}
-		
+		if(val != -1) {
 		if(num ==0 ) {
 			System.out.println("컴퓨터는 가위를 냈습니다.");
 		}else if(num == 1) {
@@ -35,14 +38,16 @@ public class RockPaperSissor extends Game {
 		}else if(num ==2 ) {
 			System.out.println("컴퓨터는 보를 냈습니다.");
 		}
+		}
 	
 		
 	
 }
 
 public int RPS() {
-	
+	do {
 	RockPaperSissor.run();
+	} while(val == -1);
 	
 	switch (val) {
 	case 0://가위

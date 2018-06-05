@@ -19,9 +19,60 @@ public class Computer extends Game implements Runnable {
 		if (level == 1)
 			randomInput(map);
 		else if(level == 2)
-			middleInput(map);
+			medium(map);
 		else if (level == 3)
 			computerInput(map);
+	}
+	
+	private void medium(int[][] map) {
+		int[][] copyMap = new int[3][3];
+		int index = -1;
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				copyMap[i][j] = map[i][j];
+				if (index == -1 && map[i][j] == BLANK)
+					index = i * 3 + j;
+			}
+		}
+		
+		if (index == -1) {
+			System.out.println("Map is full!");
+			return;
+		}
+		
+		int max = -1000;
+		int maxIndex = -1;
+		for (int i = index; i < 9; i++) {
+			int result = calculate(copyMap, index, COMPUTER);
+			if (result > max) {
+				max = result;
+				maxIndex = i;
+			}
+		}
+		
+		if (maxIndex == -1) {
+			System.out.println("Computer fail");
+			return;
+		}
+		
+		map[maxIndex / 3][maxIndex % 3] = COMPUTER;
+	}
+	
+	private int calculate(int[][] map, int index, int turn) {
+		LogicCheck checker = new LogicCheck();
+		map[index / 3][index % 3] = turn;
+		
+		int result = checker.ScoreCheck(map);
+		if (result != CONTINUE) {
+			if (result == USER)
+				return 100;
+			else
+				return -100;
+		}
+		
+		turn = (turn == COMPUTER) ? USER : COMPUTER;
+		
+		return calculate(map, index + 1, turn);
 	}
 	
 	private void randomInput(int[][] map) {

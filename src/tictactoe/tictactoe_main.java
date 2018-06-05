@@ -15,7 +15,10 @@ public class tictactoe_main {
 
 		// Array initialize
 		SaveMakeClean(map);
-		System.out.println("choose the level 1.easy 2.middle 3.hard");
+		System.out.println("|*******************Tic-Tac-Toe*******************|");
+		System.out.println("|*                                              **|");
+		System.out.println("|***  choose the level 1.easy 2.middle 3.hard  ***|");
+
 		int level = scanner.nextInt();
 		
 		
@@ -45,7 +48,7 @@ public class tictactoe_main {
 			Print.show(map);
 			
 			if(flag != Game.CONTINUE) {
-				check.winnerCheck(flag);
+				//check.winnerCheck(flag);
 				loadSaveHandler.run(flag, "load_save.txt");
 				System.out.print("Do you want to play game again? (Y/N) ");
 				state = scanner.next();
@@ -54,13 +57,12 @@ public class tictactoe_main {
 					turn = (flag == Game.COMPUTER_WIN) ? Game.USER : Game.COMPUTER;
 
 					continue;
-				
 				}
-				else loadSaveHandler.printData("load_save.txt");
 			}
 			turn = (turn == Game.COMPUTER) ? Game.USER : Game.COMPUTER;
-			//scanner.close();
 		}
+		loadSaveHandler.printData("load_save.txt");
+		scanner.close();
 	}
 		
 	

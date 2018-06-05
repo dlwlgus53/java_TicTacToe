@@ -4,10 +4,11 @@ public class Print {
 
 	public static void origin() {
 		//처음 표 보여주는 함수
+		System.out.println("<<<MAP>>>");
 		System.out.println(" 1 ㅣ 2 ㅣ 3");
-		System.out.println(" ㅡ     ㅡ    ㅡ");
+		System.out.println("ㅡ     ㅡ    ㅡ");
 		System.out.println(" 4 ㅣ 5 ㅣ 6");
-		System.out.println(" ㅡ     ㅡ    ㅡ");
+		System.out.println("ㅡ     ㅡ    ㅡ");
 		System.out.println(" 7 ㅣ 8 ㅣ 9");
 	}
 	
