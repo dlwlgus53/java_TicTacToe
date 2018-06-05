@@ -12,7 +12,7 @@ public class LoadSave {
    String FileName;
    int user_score = 0;
    int computer_score = 0;
-   //∆ƒ¿œ ª˝º∫
+   //ÌååÏùºÏÉùÏÑ±
    
    LoadSave() {
       FileName = null;
@@ -20,18 +20,17 @@ public class LoadSave {
    
    
    public void run(int WHO, String FileName)  {
-	   resultVal(WHO);
+	   calculate(WHO);
 	   try {
 		   saveResult(FileName);
 	   } catch (FileNotFoundException e) {
 		  e.printStackTrace();
 	   }
-	   printData(FileName);
-	   
+	   printResult(FileName); 
    }
    
-   //∞·∞˙ πﬁæ∆ø¿±‚ 
-   public void resultVal(int WHO) {
+   // score 
+   public void calculate(int WHO) {
       switch(WHO) {
       case 1:
          user_score++;
@@ -42,13 +41,13 @@ public class LoadSave {
    }
       }
    
-   
    public void saveResult(String FileName) throws FileNotFoundException {
 	   	   
        PrintWriter output = new PrintWriter(FileName);
-       
-       output.println("User Score: " + user_score);
-       output.println("Computer Score: " + computer_score);
+       System.out.println("");
+       System.out.println("<<Total Score>>");
+       output.println("User : Computer ");
+       output.println(user_score + " : " + computer_score);
        
        if( user_score == computer_score ) {
           output.println("DRAW!!");
@@ -61,9 +60,8 @@ public class LoadSave {
        }
        output.close();
    }
-   //√‚∑¬
    
-   public void printData(String fileName) {
+   public void printResult(String fileName) {
       Scanner inputStream = null;
       
       try {
@@ -79,8 +77,5 @@ public class LoadSave {
          System.out.println(line);
       }
       inputStream.close();
-      
    }
-   
-   
 }
