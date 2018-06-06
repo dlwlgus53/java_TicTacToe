@@ -38,8 +38,8 @@ public class LogicCheck extends Game {
 		
 		if (tie(scoreArray) == true)
 			return NO_WIN;
-		
-		return CONTINUE;
+		else
+			return CONTINUE;		
 	}
 	
 	public static boolean tie(int[][] array) {
