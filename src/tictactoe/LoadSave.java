@@ -12,7 +12,7 @@ public class LoadSave {
    String FileName;
    int user_score = 0;
    int computer_score = 0;
-   //ÆÄÀÏ »ý¼º
+   //ï¿½ë™†ï¿½ì”ªï¿½ê¹®ï¿½ê½¦
    
    LoadSave() {
       FileName = null;
@@ -20,18 +20,17 @@ public class LoadSave {
    
    
    public void run(int WHO, String FileName)  {
-	   resultVal(WHO);
+	   calculate(WHO);
 	   try {
 		   saveResult(FileName);
 	   } catch (FileNotFoundException e) {
 		  e.printStackTrace();
 	   }
-	   printData(FileName);
-	   
+	   printResult(FileName); 
    }
    
-   //°á°ú ¹Þ¾Æ¿À±â 
-   public void resultVal(int WHO) {
+   // score 
+   public void calculate(int WHO) {
       switch(WHO) {
       case 1:
          user_score++;
@@ -42,30 +41,26 @@ public class LoadSave {
    }
       }
    
-   
    public void saveResult(String FileName) throws FileNotFoundException {
 	   	   
        PrintWriter output = new PrintWriter(FileName);
-       
+  
        output.print("User : Computer  " + user_score +" : "  + computer_score);
-      
-     /*  if( user_score == computer_score ) {
-          output.println("DRAW!!");
-       }
-       else if(user_score < computer_score ) {
-          output.println("COMPUTER WIN!!");
-       }
-       else if(user_score > computer_score ) {
-          output.println("USER WIN!!");
-       }*/
+     
        output.close();
    }
-   //Ãâ·Â
+   //ì¶œë ¥
    public void showResult(String FileName) throws FileNotFoundException {
    	   
        PrintWriter output = new PrintWriter(FileName);
+
+       System.out.println("");
+       System.out.println("<<Total Score>>");
+       output.println("User : Computer ");
+       output.println(user_score + " : " + computer_score);
+
        
-       //output.print("User : Computer  " + user_score +" : "  + computer_score);
+      
       
        if( user_score == computer_score ) {
           output.println("DRAW!!");
@@ -82,7 +77,7 @@ public class LoadSave {
        output.close();
    }
    
-   public void printData(String fileName) {
+   public void printResult(String fileName) {
       Scanner inputStream = null;
       
       try {
@@ -98,8 +93,5 @@ public class LoadSave {
          System.out.println(line);
       }
       inputStream.close();
-      
    }
-   
-   
 }

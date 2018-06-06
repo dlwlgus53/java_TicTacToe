@@ -65,7 +65,10 @@ public class tictactoe_main {
 			}
 			turn = (turn == Game.COMPUTER) ? Game.USER : Game.COMPUTER;
 		}
+
 		loadSaveHandler.showResult("load_save.txt");
+
+
 		scanner.close();
 	}
 		
