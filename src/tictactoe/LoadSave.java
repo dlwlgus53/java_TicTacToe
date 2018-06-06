@@ -47,10 +47,9 @@ public class LoadSave {
 	   	   
        PrintWriter output = new PrintWriter(FileName);
        
-       output.println("User Score: " + user_score);
-       output.println("Computer Score: " + computer_score);
-       
-       if( user_score == computer_score ) {
+       output.print("User : Computer  " + user_score +" : "  + computer_score);
+      
+     /*  if( user_score == computer_score ) {
           output.println("DRAW!!");
        }
        else if(user_score < computer_score ) {
@@ -58,10 +57,30 @@ public class LoadSave {
        }
        else if(user_score > computer_score ) {
           output.println("USER WIN!!");
-       }
+       }*/
        output.close();
    }
    //Ãâ·Â
+   public void showResult(String FileName) throws FileNotFoundException {
+   	   
+       PrintWriter output = new PrintWriter(FileName);
+       
+       //output.print("User : Computer  " + user_score +" : "  + computer_score);
+      
+       if( user_score == computer_score ) {
+          output.println("DRAW!!");
+          System.out.println("DRAW!!");
+       }
+       else if(user_score < computer_score ) {
+          output.println("COMPUTER WIN!!");
+          System.out.println("COMPUTER WIN!!");
+       }
+       else if(user_score > computer_score ) {
+          output.println("USER WIN!!");
+          System.out.println("USER WIN!!");
+       }
+       output.close();
+   }
    
    public void printData(String fileName) {
       Scanner inputStream = null;

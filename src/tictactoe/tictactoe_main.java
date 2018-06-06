@@ -1,11 +1,13 @@
 package tictactoe;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class tictactoe_main {
 
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) throws FileNotFoundException {
+		int count=1;
+		System.out.println("|*******************Tic-Tac-Toe*******************|");
 		Scanner scanner = new Scanner(System.in);
 		String state = "Yes";
 		
@@ -14,54 +16,56 @@ public class tictactoe_main {
 		LoadSave loadSaveHandler = new LoadSave();
 
 		// Array initialize
+		
 		SaveMakeClean(map);
-		System.out.println("|*******************Tic-Tac-Toe*******************|");
-		System.out.println("|*                                              **|");
-		System.out.println("|***  choose the level 1.easy 2.middle 3.hard  ***|");
+		Computer ai = new Computer();
+		ai.inputlevel();
 
-		int level = scanner.nextInt();
-		
-		
-		Computer ai = new Computer(level);
 		int turn = Game.USER;
 		int flag = Game.CONTINUE;
 	
 		
-		
-		Print.origin();
 		LogicCheck check = new LogicCheck();
 		RockPaperSissor ordergame = new RockPaperSissor();
+		
 		turn=ordergame.RPS();
+		Print.origin();
 		
 		while(state.toLowerCase().charAt(0) == 'y') {
+		
 			// Handle input (in InputHandle, Logic check will be called and return that value)
 			if (turn == Game.COMPUTER) {
-				System.out.println("<<computer>>");
+				System.out.println("<<Computer turn>>");
+				Game.sleep(1800);
 				ai.computerInput(map);
 				flag = check.ScoreCheck(map);
+				Game.sleep(1500);//ÄÄÇ»ÅÍ ¸ÊÀº ´Ê°Ô ³ª¿À±â
 			}
 			else {
 					InputHandle.run(map);
 					flag = check.ScoreCheck(map);
+					Game.sleep(500);
+					
 			}
 			
 			Print.show(map);
 			
 			if(flag != Game.CONTINUE) {
-				//check.winnerCheck(flag);
+				winner(flag,count);
+				count ++;
 				loadSaveHandler.run(flag, "load_save.txt");
 				System.out.print("Do you want to play game again? (Y/N) ");
 				state = scanner.next();
 				if (state.toLowerCase().charAt(0) == 'y') {
 					SaveMakeClean(map);
+					Print.origin();
 					turn = (flag == Game.COMPUTER_WIN) ? Game.USER : Game.COMPUTER;
-
 					continue;
 				}
 			}
 			turn = (turn == Game.COMPUTER) ? Game.USER : Game.COMPUTER;
 		}
-		loadSaveHandler.printData("load_save.txt");
+		loadSaveHandler.showResult("load_save.txt");
 		scanner.close();
 	}
 		
@@ -77,6 +81,20 @@ public class tictactoe_main {
 			}
 		}
 	}
+	
+	private static void winner(int flag, int count) {
+		Game.sleep(500);
+		  System.out.println("<<Result>>");
+		if(flag == Game.USER_WIN)
+			System.out.println("game " + count +" : "+ "  User win");
+		else if(flag == Game.COMPUTER_WIN)
+			System.out.println("game " + count +":"+ "  Computer win");
+		else if(flag == Game.NO_WIN)
+			System.out.println("game" + count +" : " + "  NO Winner");
+	}
+	
+	
+	
 
 
 }

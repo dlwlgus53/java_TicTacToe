@@ -13,7 +13,9 @@ public class InputHandle {
          
          try {
             do {
-                System.out.println("<<Input number>>");
+                System.out.println("<<User turn>>");
+                //Print.show(map);
+                System.out.print("User(enter the number) :  ");
                 number = kb.nextInt(); 
                 
              }while(check(map, number) == false);
