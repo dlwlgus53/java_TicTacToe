@@ -20,19 +20,37 @@ public class Computer extends Game implements Runnable {
 		Scanner scanner = new Scanner(System.in);
 		int level;
 		Game.sleep(800);
-		System.out.println("Enter the number of level 1.easy 2.middle 3.hard");
+		Game.printSeq("Enter the number of level 1.easy 2.middle 3.hard");
 		Game.sleep(500);
-		while(true) {
-			System.out.print("level : ");
-			level = scanner.nextInt();
-			if(level == 1 || level == 2 || level == 3)
+		System.out.print("level : ");
+	
+
+		while(true){
+			String scanString = scanner.nextLine();
+			if (scanString.equals("1")) {
+				level = 1;
 				break;
-			else
-				System.out.println("Wrong number Please enter agian");
+			}else if (scanString.equals("2")) {
+				level = 2;
+				break;
+			}else if (scanString.equals("3")) {
+				level = 3;
+				break;
+			}else {
+				System.out.println("   Plz input again");
+				continue;
+			}
 		}
+
+
 		Game.sleep(500);
-		System.out.println("you choose level " + level );
-		System.out.println("******************************************************");
+		if(level ==1)
+			Game.printSeq("you choose level 1" );
+		else if (level == 2)
+			Game.printSeq("you choose level 2" );
+		else if(level ==3)
+			Game.printSeq("you choose level 3" );
+		Game.printSeq("******************************************************");
 
 
 		//scanner.close();

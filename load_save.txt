@@ -1,1 +1,3 @@
-User : Computer  0 : 1
+User : Computer 
+0 : 1
+COMPUTER WIN!!

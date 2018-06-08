@@ -7,13 +7,13 @@ public class Print {
 		Game.sleep(1500);
 		System.out.println("");
 		System.out.println("<<< MAP >>>");
-		System.out.println("  天     天    天");
+		System.out.println("  天   天  天");
 		System.out.println("| 1 太 2 太 3 |");
-		System.out.println(" 天     天    天 ");
+		System.out.println(" 天   天   天 ");
 		System.out.println("| 4 太 5 太 6 |");
-		System.out.println(" 天     天    天 ");
+		System.out.println(" 天   天  天 ");
 		System.out.println("| 7 太 8 太 9 |");
-		System.out.println("  天     天    天 ");
+		System.out.println(" 天   天  天 ");
 		System.out.println("");
 	
 	}
@@ -23,12 +23,12 @@ public class Print {
 		
 		int i=0,j=0;
 	
-		System.out.println(" 天     天    天");
+		System.out.println(" 天   天  天 ");
 		for(i=0;i<3;i++) {
 			System.out.print("| ");
 			for(j=0;j<3;j++) {
 				if(map[i][j] == 0) {
-					System.out.print(" ");
+					System.out.print("  ");
 					System.out.print("| ");
 				}
 				else if(map[i][j] ==1) {
@@ -41,7 +41,7 @@ public class Print {
 					
 				}
 			}
-			System.out.println("\n"+" 天     天    天");
+			System.out.println("\n 天  天 天 ");
 			
 		}
 		System.out.println("User : ≒ Computer : ∞ ");
