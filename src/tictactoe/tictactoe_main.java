@@ -67,9 +67,9 @@ public class tictactoe_main {
 				winner(flag,count);
 				count ++;
 				loadSaveHandler.run(flag, "load_save.txt");
-				System.out.print("Do you want to play game again? (Y/N) ");
-				state = scanner.nextLine();
-				if (state.toLowerCase().charAt(0) == 'y') {
+				
+				state = ContinueOrNot();
+				if (state.equals("y")) {
 					SaveMakeClean(map);
 					Print.origin();
 					turn = (flag == Game.COMPUTER_WIN) ? Game.USER : Game.COMPUTER;
@@ -129,6 +129,23 @@ public class tictactoe_main {
 				continue;
 			}
 		}
+	}
+	
+	private static String ContinueOrNot() {
+		System.out.println("Do you want to play game again? ");
+		while(true) {
+			System.out.print("Please enter (Yes/No) : ");
+			String scanString = scanner.nextLine();
+			if (scanString.equals("Yes")) {
+				return "y";
+			}else if (scanString.equals("No")) {
+				return "n";
+			}else {
+				System.out.println("  Plz input again");
+				continue;
+			}
+		}
+
 	}
 
 

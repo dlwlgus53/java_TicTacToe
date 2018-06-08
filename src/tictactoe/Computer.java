@@ -38,6 +38,7 @@ public class Computer extends Game implements Runnable {
 				break;
 			}else {
 				System.out.println("   Plz input again");
+				System.out.print("level : ");
 				continue;
 			}
 		}

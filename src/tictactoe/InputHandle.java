@@ -22,7 +22,7 @@ public class InputHandle {
          }
          
          catch(InputMismatchException e) {
-              System.out.println("문자를 입력받았습니다.");
+              System.out.println("Please enter integer");
               run(map);
             }
          
@@ -36,7 +36,7 @@ public class InputHandle {
       
       switch(num) {
       case 0:
-         System.out.println("1~9사이의 정수만 입력해주세요~");
+         System.out.println("please enter integer in 1 to 9");
          return false;
       case 1:
          row = 0;
